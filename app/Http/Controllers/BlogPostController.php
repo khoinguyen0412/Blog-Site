@@ -107,6 +107,6 @@ class BlogPostController extends Controller
         //
         $blogPost -> delete();
 
-        return redirect('/blog');
+        return redirect('/blog/home');
     }
 }
