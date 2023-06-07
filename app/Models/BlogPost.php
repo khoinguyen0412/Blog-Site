@@ -8,6 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class BlogPost extends Model
 {
     use HasFactory;
-    protected $fillable = ['title', 'body', 'user_id'];
+    protected $fillable = ['title', 'body','name'];
     // Make the value can be modified by the adding post function
 }

@@ -18,25 +18,6 @@
 
     </head>
     <header class="p-5 bg-dark">
-        <div class="">
-            @if (Route::has('login'))
-                <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
-                    @auth
-                        <div class = "text-right">
-                            <p style="color:white">Logged in as @ {{Auth::user()->name}}</p>
-                            <a href="{{ route('logout') }}" class="btn btn-danger">Log out</a>
-                        </div>
-                    @else
-                        <div class = "text-right">
-                            <a href="{{ route('login') }}" class="btn btn-outline-primary pull-right">Log in</a>
-                    @if (Route::has('register'))
-                            <a href="{{ route('register') }}" class="btn btn-outline-danger">Register</a>
-                    @endif
-                        </div>
-                    
-                    @endauth
-                </div>
-            @endif
     </header>
 
     <body class = "antialiased">

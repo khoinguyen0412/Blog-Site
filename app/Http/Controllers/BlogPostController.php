@@ -28,7 +28,7 @@ class BlogPostController extends Controller
     public function create()
     {
         //
-        return view('blog.create');
+        return view('blog.create') ;
     }
 
     /**
@@ -44,9 +44,10 @@ class BlogPostController extends Controller
         $newPost = BlogPost::create([
             'title' => $request->title,
             'body' => $request->body,
-            'user_id' => 1]);
+            'name'=>$request->name,
+            ]);
         
-        return redirect('/blog');
+        return redirect('/blog/home');
     }
 
     /**

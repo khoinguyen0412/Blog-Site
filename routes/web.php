@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BlogPostController;
 use App\Models\BlogPost;
 use Illuminate\Support\Facades\Route;
@@ -21,7 +22,12 @@ Route::get('/', function () {
 
 
 Route::group(['prefix' => 'blog'], function () {
-    Route::get('/', [BlogPostController::class,'index']);
+    Route::get('/login', [AuthController::class, 'index'])->name('login');
+    Route::post('/post-login', [AuthController::class, 'postLogin'])->name('login.post');
+    Route::get('/register', [AuthController::class, 'registration'])->name('register');
+    Route::post('/register', [AuthController::class,'postRegistration'])->name('register.post');
+    Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
+    Route::get('/home', [BlogPostController::class,'index'])->name('home');
     Route::get('/{id}', [BlogPostController::class, 'show']);
     Route::get('/create/post',[BlogPostController::class, 'create']);
     Route::post('/create/post', [BlogPostController::class, 'store']);
