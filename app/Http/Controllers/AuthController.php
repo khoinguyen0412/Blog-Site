@@ -56,7 +56,7 @@ class AuthController extends Controller
     public function postRegistration(Request $request)
     {
         $request->validate([
-            'name' => 'required',
+            'name' => 'required|unique:users',
             'email' => 'required|email|unique:users',
             'password' => 'required|min:6',
         ]);

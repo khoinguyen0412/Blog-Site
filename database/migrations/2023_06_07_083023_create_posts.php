@@ -18,6 +18,7 @@ return new class extends Migration
             $table->text('title');
             $table->text('body');
             $table->text('name');
+            $table->integer('author_id');
             $table->timestamps();
         });
     }

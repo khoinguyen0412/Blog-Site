@@ -3,7 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\BlogPost;
+use Hamcrest\Type\IsNumeric;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
+use function PHPUnit\Framework\isNull;
 
 class BlogPostController extends Controller
 {
@@ -16,6 +20,10 @@ class BlogPostController extends Controller
     {
         //
         $posts = BlogPost::all();
+
+        if(!Auth::check()){
+            return redirect('/blog/login');
+        }
        
         return view('home') ->with('posts',$posts); 
     }
@@ -28,6 +36,10 @@ class BlogPostController extends Controller
     public function create()
     {
         //
+        if(!Auth::check()){
+            return redirect('/blog/login');
+        }
+
         return view('blog.create') ;
     }
 
@@ -45,6 +57,7 @@ class BlogPostController extends Controller
             'title' => $request->title,
             'body' => $request->body,
             'name'=>$request->name,
+            'author_id'=>$request->author_id,
             ]);
         
         return redirect('/blog/home');
@@ -60,6 +73,16 @@ class BlogPostController extends Controller
     public function show($id)
     {
         //
+
+        if(!Auth::check()){
+            return redirect('/blog/login');
+        }
+
+        if(!is_numeric($id)){
+            return redirect('/blog');
+        }
+
+    
         $post=BlogPost::find($id);
 
 
@@ -75,6 +98,10 @@ class BlogPostController extends Controller
     public function edit(BlogPost $blogPost)
     {
         //
+        if(!Auth::check()){
+            return redirect('/blog/login');
+        }
+
         return view('blog.edit', ['post'=>$blogPost]);
     }
 
@@ -88,6 +115,10 @@ class BlogPostController extends Controller
     public function update(Request $request, BlogPost $blogPost)
     {
         //
+        if(!Auth::check()){
+            return redirect('/blog/login');
+        }
+
         $blogPost->update([
             'title' => $request->title,
             'body' => $request->body

@@ -1,5 +1,12 @@
 @extends('layouts.app')
 @section('content')
+
+    @if (session()->has('message'))
+    <div class="p-3 bg-success text-white" id="successMessage">
+        {{ session()->get('message') }}
+    </div>
+    @endif
+
     <div class="container">
         <div class="row">
             <div class="col-12 text-center pt-5">

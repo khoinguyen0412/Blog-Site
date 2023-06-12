@@ -15,8 +15,12 @@
                     <form action="" method="post">
                         @csrf
                         <div class="row">
+                            <div class="control-group col-12">
+                                <input type="hidden" id="name_holder" class="form-control" name="author_id"
+                                       value="{{ Auth::user()->id }}" readonly='true'>
+                            </div>      
                              <div class="control-group col-12">
-                                <label for="name_holder">Name</label>
+                                <label for="name_holder">Username</label>
                                 <input type="text" id="name_holder" class="form-control" name="name"
                                        value="{{ Auth::user()->name }}" readonly='true'>
                                 <!-- <input type = "hidder" id="name"  -->

@@ -1,4 +1,4 @@
-@extends(layouts.app)
+@extends('layouts.app')
 
 @section('content')
         <table class="table">
@@ -15,7 +15,7 @@
             <tr>
                 <th scope="row">{{$key+1}}</th>
             <td>{{$user->name}}</td>
-            <td>{{$user->email_address}}</td>
+            <td>{{$user->email}}</td>
             <td>{{$user->role_id == 1 ? 'Admin' :'User'}}</td>
             
             </tr>

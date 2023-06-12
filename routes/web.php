@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BlogPostController;
 use App\Models\BlogPost;
@@ -27,7 +28,7 @@ Route::group(['prefix' => 'blog'], function () {
     Route::get('/register', [AuthController::class, 'registration'])->name('register');
     Route::post('/register', [AuthController::class,'postRegistration'])->name('register.post');
     Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
-    Route::get('/home', [BlogPostController::class,'index'])->name('home');
+    Route::get('/', [BlogPostController::class,'index'])->name('home');
     Route::get('/{id}', [BlogPostController::class, 'show']);
     Route::get('/create/post',[BlogPostController::class, 'create']);
     Route::post('/create/post', [BlogPostController::class, 'store']);
@@ -35,4 +36,11 @@ Route::group(['prefix' => 'blog'], function () {
     Route::put('/{blogPost}/edit', [BlogPostController::class, 'update']);
     Route::delete('/{blogPost}',[BlogPostController::class, 'destroy']);
     
+});
+
+
+Route::prefix('admin')->middleware('auth','is_admin')->group(function(){
+    Route::get('/',[AdminController::class, 'index'])->name('admin.index');
+    Route::post('/show',[AdminController::class,'show'])->name('admin.show');
+
 });
